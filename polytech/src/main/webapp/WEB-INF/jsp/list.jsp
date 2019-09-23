@@ -24,7 +24,8 @@ if ('SpeechRecognition' in window) {
     console.log("음성인식을 지원하는 브라우저입니다.")
  }
  try {
-    var recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+    var recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition
+    		|| window.mozSpeechRecognition || window.msSpeechRecognition)();
  } catch (e) {
     console.error(e);
  }

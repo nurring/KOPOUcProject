@@ -69,6 +69,7 @@ public class UcController {
 		return "list";
 	}
 
+	//사용자 삭제
 	@GetMapping(value = "/delete.html/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		logger.info("delete started targeting ->" + id + "===================================");
@@ -80,6 +81,7 @@ public class UcController {
 		return "redirect:/0";
 	}
 
+	//사용자 정보 수정
 	@GetMapping(value = "/oneview.html/{id}/editform")
 	public String editForm(@PathVariable("id") Long id, Model model) {
 		logger.info("editform started targeting ->" + id + "===================================");
@@ -88,6 +90,7 @@ public class UcController {
 		return "editform";
 	}
 
+	//사용자 저장
 	@PostMapping(value = "/save.html")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public String save(UcUser ucUser) {
@@ -103,6 +106,7 @@ public class UcController {
 		return "redirect:/0";
 	}
 	
+	//연락처 저장
 	@PostMapping(value = "/save2.html")
 	public String save2(UcPhone ucPhone, Long userid) throws IOException {
 		logger.info("save2 started targeting ->" + ucPhone.getId() + "===================================");
@@ -130,14 +134,14 @@ public class UcController {
 		return "redirect:/oneview.html/" + ucPhone.getUcUser().getId();
 	} 
 	
-	
-
+	//새 사용자 추가 폼
 	@GetMapping(value = "/newform.html") // list일 때 get방식으로 가져온다
 	public String newForm(Model model) {
 		logger.info("newform started===================================");
 		return "newform";
 	}
 
+	//개인 별 정보 보기
 	@GetMapping(value = "/oneview.html/{id}")
 	public String oneView(@PathVariable("id") Long id, Model model) {
 		logger.info("oneview started targeting ->" + id + "===================================");
@@ -148,15 +152,15 @@ public class UcController {
 		return "oneview";
 	}
 
+	//새 연락처 추가 폼
 	@GetMapping(value = "/oneview.html/{id}/newform2")
 	public String newForm2(@PathVariable("id") Long id, Model model) {
 		logger.info("newform2 started targeting ->" + id + "===================================");
 		model.addAttribute("user", id);
 		return "newform2";
 	}
-
 	
-
+	//연락처 수정
 	@GetMapping(value = "/oneview.html/{id}/editform2/{phoneid}")
 	public String editForm2(@PathVariable("id") Long id, @PathVariable("phoneid") Long phoneid, Model model) {
 		logger.info("editform2 started targeting ->" + phoneid + "===================================");
@@ -166,6 +170,7 @@ public class UcController {
 		return "editform2";
 	}
 
+	//연락처 삭제
 	@GetMapping(value = "/oneview.html/{id}/delete2/{phoneid}")
 	public String delete2(@PathVariable("id") Long id, @PathVariable("phoneid") Long phoneid) {
 		logger.info("delete2 started targeting ->" + phoneid + "===================================");
@@ -177,6 +182,7 @@ public class UcController {
 		return "redirect:/oneview.html/" + id;
 	}
 
+	//검색
 	@PostMapping(value = "/search.html")
 	public String search(String type, String search, Model model) {
 		logger.info("search started targeting ->" + search + "===================================");
@@ -224,6 +230,7 @@ public class UcController {
 		return "search";
 	}
 	
+	//복수 사용자 삭제
 	@PostMapping(value = "/deletes.html")
 	public String deletes(HttpServletRequest request, Model model) {
 		logger.info("deletes started===================================");
